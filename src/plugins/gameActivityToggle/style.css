@@ -1,0 +1,4 @@
+﻿[class*="panels"] [class*="accountPopoutButtonWrapper"] {
+    min-width: 0;
+}
+

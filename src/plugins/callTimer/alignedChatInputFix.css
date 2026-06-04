@@ -1,0 +1,5 @@
+﻿[class*="panels"] [class*="inner"],
+[class*="rtcConnectionStatus"] {
+    height: fit-content !important;
+}
+
