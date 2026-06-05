@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -178,7 +178,7 @@ export default function PluginModal({ plugin, onRestartNeeded, onClose, transiti
                         <div className="vc-settings-modal-links">
                             <WebsiteButton
                                 text="View more info"
-                                href={`https://vencord.dev/plugins/${plugin.name}`}
+                                href={`https://DemCord.dev/plugins/${plugin.name}`}
                             />
                             <GithubButton
                                 text="View source code"
@@ -255,5 +255,9 @@ export function openPluginModal(plugin: Plugin, onRestartNeeded?: (pluginName: s
         />
     ));
 }
+
+
+
+
 
 

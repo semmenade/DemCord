@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,9 +32,9 @@ import { waitForComponent } from "./internal";
 
 export const Forms = {
     // TODO: Stop using this and use Heading/Paragraph directly
-    /** @deprecated use Heading from Vencord */
+    /** @deprecated use Heading from DemCord */
     FormTitle: Heading,
-    /** @deprecated use Paragraph from Vencord */
+    /** @deprecated use Paragraph from DemCord */
     FormText: Paragraph,
     /** @deprecated don't use this */
     FormSection: "section" as never, // Backwards compat since Vesktop uses this
@@ -43,17 +43,17 @@ export const Forms = {
 };
 
 // TODO: Stop using this and use Paragraph/Span directly
-/** @deprecated use Paragraph, Span, or BaseText from Vencord */
+/** @deprecated use Paragraph, Span, or BaseText from DemCord */
 export const Text = TextCompat;
-/** @deprecated use Button from Vencord */
+/** @deprecated use Button from DemCord */
 export const Button = ButtonCompat;
-/** @deprecated Use FormSwitch from Vencord */
+/** @deprecated Use FormSwitch from DemCord */
 export const Switch = FormSwitchCompat as never;
 
 export const Checkbox = waitForComponent<t.Checkbox>("Checkbox", filters.componentByCode('"data-toggleable-component":"checkbox'));
 
 export const Tooltip = waitForComponent<t.Tooltip>("Tooltip", m => m.prototype?.shouldShowTooltip && m.prototype.render, TooltipFallback);
-/** @deprecated import from @vencord/components */
+/** @deprecated import from @DemCord/components */
 export const TooltipContainer = TooltipContainerComponent as never;
 
 // FIXME: t.TextInput was for the old void components, and is not 100% correct for the mana component
@@ -124,5 +124,8 @@ export const Animations = mapMangledModuleLazy(".assign({colorNames:", {
     Transition: filters.componentByCode('["items","children"]', ",null,"),
     animated: filters.byProps("div", "text")
 });
+
+
+
 
 

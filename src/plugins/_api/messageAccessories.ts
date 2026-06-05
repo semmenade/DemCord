@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,10 +28,13 @@ export default definePlugin({
             find: "#{intl::REMOVE_ATTACHMENT_BODY}",
             replacement: {
                 match: /children:(\[[^\]]{0,100}?this.renderSuppressConfirmModal[^\]]{0,100}?\])/,
-                replace: "children:Vencord.Api.MessageAccessories._modifyAccessories($1,this?.props)",
+                replace: "children:DemCord.Api.MessageAccessories._modifyAccessories($1,this?.props)",
             },
         },
     ],
 });
+
+
+
 
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,9 +19,9 @@
 import { app } from "electron";
 import { join } from "path";
 
-export const DATA_DIR = process.env.VENCORD_USER_DATA_DIR ?? (
+export const DATA_DIR = process.env.DemCord_USER_DATA_DIR ?? (
     process.env.DISCORD_USER_DATA_DIR
-        ? join(process.env.DISCORD_USER_DATA_DIR, "..", "VencordData")
+        ? join(process.env.DISCORD_USER_DATA_DIR, "..", "DemCordData")
         : join(app.getPath("userData"), "..", "DemCord")
 );
 export const SETTINGS_DIR = join(DATA_DIR, "settings");
@@ -40,5 +40,8 @@ export const ALLOWED_PROTOCOLS = [
 ];
 
 export const IS_VANILLA = /* @__PURE__ */ process.argv.includes("--vanilla");
+
+
+
 
 

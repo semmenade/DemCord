@@ -49,7 +49,7 @@ let defaultGetStoreFunc: UseStore | undefined;
 
 function defaultGetStore() {
     if (!defaultGetStoreFunc) {
-        defaultGetStoreFunc = createStore(!IS_REPORTER ? "VencordData" : "VencordDataReporter", "VencordStore");
+        defaultGetStoreFunc = createStore(!IS_REPORTER ? "DemCordData" : "DemCordDataReporter", "DemCordStore");
     }
     return defaultGetStoreFunc;
 }
@@ -277,5 +277,8 @@ export function entries<KeyType extends IDBValidKey, ValueType = any>(
         );
     });
 }
+
+
+
 
 

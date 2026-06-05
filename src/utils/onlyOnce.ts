@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,5 +27,8 @@ export function onlyOnce<F extends Function>(f: F): F {
         return (result = f.apply(this, arguments));
     } as unknown as F;
 }
+
+
+
 
 

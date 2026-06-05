@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * DemCord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -65,7 +65,7 @@ export async function exportSettings({ minify }: { minify?: boolean; } = {}) {
 }
 
 export async function downloadSettingsBackup() {
-    const filename = `vencord-settings-backup-${moment().format("YYYY-MM-DD")}.json`;
+    const filename = `DemCord-settings-backup-${moment().format("YYYY-MM-DD")}.json`;
     const backup = await exportSettings();
     const data = new TextEncoder().encode(backup);
 
@@ -111,5 +111,8 @@ export async function uploadSettingsBackup(showToast = true): Promise<void> {
         reader.readAsText(file);
     }
 }
+
+
+
 
 

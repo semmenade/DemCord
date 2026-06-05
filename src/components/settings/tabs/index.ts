@@ -17,4 +17,3 @@ export { default as ThemesTab } from "./themes";
 export { default as UpdaterTab } from "./updater";
 export { default as VencordTab } from "./vencord";
 
-

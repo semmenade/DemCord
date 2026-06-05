@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ import { installExt } from "./utils/extensions";
 if (IS_VESKTOP || !IS_VANILLA) {
     app.whenReady().then(() => {
         protocol.handle("DemCord", ({ url: unsafeUrl }) => {
-            let url = decodeURI(unsafeUrl).slice("vencord://".length).replace(/\?v=\d+$/, "");
+            let url = decodeURI(unsafeUrl).slice("DemCord://".length).replace(/\?v=\d+$/, "");
 
             if (url.endsWith("/")) url = url.slice(0, -1);
 
@@ -67,8 +67,8 @@ if (IS_VESKTOP || !IS_VANILLA) {
         try {
             if (RendererSettings.store.enableReactDevtools)
                 installExt("fmkadmapgofadopljbjfkapdkoienihi")
-                    .then(() => console.info("[Vencord] Installed React Developer Tools"))
-                    .catch(err => console.error("[Vencord] Failed to install React Developer Tools", err));
+                    .then(() => console.info("[DemCord] Installed React Developer Tools"))
+                    .catch(err => console.error("[DemCord] Failed to install React Developer Tools", err));
         } catch { }
 
 
@@ -79,5 +79,8 @@ if (IS_VESKTOP || !IS_VANILLA) {
 if (IS_DISCORD_DESKTOP) {
     require("./patcher");
 }
+
+
+
 
 

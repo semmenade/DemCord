@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * DemCord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -50,7 +50,7 @@ function ContributorModal({ user, modalProps }: { user: User; modalProps: Render
             .sort((a, b) => Number(a.required ?? false) - Number(b.required ?? false));
     }, [user.id, user.username]);
 
-    const ContributedHyperLink = <Link href="https://vencord.dev/source">contributed</Link>;
+    const ContributedHyperLink = <Link href="https://DemCord.dev/source">contributed</Link>;
 
     return (
         <Modal
@@ -89,7 +89,7 @@ function ContributorModal({ user, modalProps }: { user: User; modalProps: Render
                     )
                     : (
                         <Forms.FormText>
-                            This person has not made any plugins. They likely {ContributedHyperLink} to Vencord in other ways!
+                            This person has not made any plugins. They likely {ContributedHyperLink} to DemCord in other ways!
                         </Forms.FormText>
                     )
             }
@@ -109,5 +109,8 @@ function ContributorModal({ user, modalProps }: { user: User; modalProps: Render
         </Modal>
     );
 }
+
+
+
 
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -86,5 +86,8 @@ export async function maybePromptToUpdate(confirmMessage: string, checkForDev = 
         alert("That also failed :( Try updating or re-installing with the installer!");
     }
 }
+
+
+
 
 

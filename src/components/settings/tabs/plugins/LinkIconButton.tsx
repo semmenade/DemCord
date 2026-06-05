@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * DemCord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -39,5 +39,8 @@ function LinkIcon({ text, href, Icon }: Props & { Icon: React.ComponentType; }) 
 
 export const WebsiteButton = (props: Props) => <LinkIcon {...props} Icon={WebsiteLinkIcon} />;
 export const GithubButton = (props: Props) => <LinkIcon {...props} Icon={GithubLinkIcon} />;
+
+
+
 
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { Link } from "@components/Link";
 import { openSettingsTabModal, UpdaterTab } from "@components/settings";
-import { CONTRIB_ROLE_ID, Devs, DONOR_ROLE_ID, KNOWN_ISSUES_CHANNEL_ID, REGULAR_ROLE_ID, SUPPORT_CATEGORY_ID, SUPPORT_CHANNEL_ID, VENBOT_USER_ID, VENCORD_GUILD_ID } from "@utils/constants";
+import { CONTRIB_ROLE_ID, Devs, DONOR_ROLE_ID, KNOWN_ISSUES_CHANNEL_ID, REGULAR_ROLE_ID, SUPPORT_CATEGORY_ID, SUPPORT_CHANNEL_ID, VENBOT_USER_ID, DemCord_GUILD_ID } from "@utils/constants";
 import { sendMessage } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import { Margins } from "@utils/margins";
@@ -46,7 +46,7 @@ import SettingsPlugin from "./settings";
 const CodeBlockRe = /```js\n(.+?)```/s;
 
 const AdditionalAllowedChannelIds = [
-    "1024286218801926184", // Vencord > #bot-spam
+    "1024286218801926184", // DemCord > #bot-spam
 ];
 
 const TrustedRolesIds = [
@@ -85,8 +85,8 @@ async function generateDebugInfoMessage() {
     })();
 
     const info = {
-        Vencord:
-            `v${VERSION} â€¢ [${gitHash}](<https://github.com/Vendicated/Vencord/commit/${gitHash}>)` +
+        DemCord:
+            `v${VERSION} â€¢ [${gitHash}](<https://github.com/Vendicated/DemCord/commit/${gitHash}>)` +
             `${SettingsPlugin.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
         Client: `${RELEASE_CHANNEL} ~ ${client}`,
         Platform: navigator.platform
@@ -98,7 +98,7 @@ async function generateDebugInfoMessage() {
 
     const commonIssues = {
         "Activity Sharing disabled": tryOrElse(() => !ShowCurrentGame.getSetting(), false),
-        "Vencord DevBuild": !IS_STANDALONE,
+        "DemCord DevBuild": !IS_STANDALONE,
         "Has UserPlugins": Object.values(PluginMeta).some(m => m.userPlugin),
         "More than two weeks out of date": BUILD_TIMESTAMP < Date.now() - 12096e5,
     };
@@ -151,11 +151,11 @@ function DevBuildConfirmModal(props: RenderModalProps) {
             }}
         >
             <div>
-                <Forms.FormText>You are using a custom build of Vencord, which we do not provide support for!</Forms.FormText>
+                <Forms.FormText>You are using a custom build of DemCord, which we do not provide support for!</Forms.FormText>
 
                 <Forms.FormText className={Margins.top8}>
-                    We only provide support for <Link href="https://vencord.dev/download">official builds</Link>.
-                    Either <Link href="https://vencord.dev/download">switch to an official build</Link> or figure your issue out yourself.
+                    We only provide support for <Link href="https://DemCord.dev/download">official builds</Link>.
+                    Either <Link href="https://DemCord.dev/download">switch to an official build</Link> or figure your issue out yourself.
                 </Forms.FormText>
 
                 <Text variant="text-md/bold" className={Margins.top8}>You will be banned from receiving support if you ignore this rule.</Text>
@@ -183,14 +183,14 @@ export default definePlugin({
 
     commands: [
         {
-            name: "vencord-debug",
-            description: "Send Vencord debug info",
+            name: "DemCord-debug",
+            description: "Send DemCord debug info",
             predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isSupportAllowedChannel(ctx.channel),
             execute: async () => ({ content: await generateDebugInfoMessage() })
         },
         {
-            name: "vencord-plugins",
-            description: "Send Vencord plugin list",
+            name: "DemCord-plugins",
+            description: "Send DemCord plugin list",
             predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isSupportAllowedChannel(ctx.channel),
             execute: () => ({ content: generatePluginList() })
         }
@@ -219,7 +219,7 @@ export default definePlugin({
                             onCancel={() => openSettingsTabModal(UpdaterTab!)}
                         >
                             <div>
-                                <Forms.FormText>You are using an outdated version of Vencord! Chances are, your issue is already fixed.</Forms.FormText>
+                                <Forms.FormText>You are using an outdated version of DemCord! Chances are, your issue is already fixed.</Forms.FormText>
                                 <Forms.FormText className={Margins.top8}>
                                     Please first update before asking for support!
                                 </Forms.FormText>
@@ -233,7 +233,7 @@ export default definePlugin({
                 }
             }
 
-            const roles = GuildMemberStore.getSelfMember(VENCORD_GUILD_ID)?.roles;
+            const roles = GuildMemberStore.getSelfMember(DemCord_GUILD_ID)?.roles;
             if (!roles || TrustedRolesIds.some(id => roles.includes(id))) return;
 
             if (!IS_WEB && IS_UPDATER_DISABLED) {
@@ -245,9 +245,9 @@ export default definePlugin({
                         variant="primary"
                     >
                         <div>
-                            <Forms.FormText>You are using an externally updated Vencord version, which we do not provide support for!</Forms.FormText>
+                            <Forms.FormText>You are using an externally updated DemCord version, which we do not provide support for!</Forms.FormText>
                             <Forms.FormText className={Margins.top8}>
-                                Please either switch to an <Link href="https://vencord.dev/download">officially supported version of Vencord</Link>, or
+                                Please either switch to an <Link href="https://DemCord.dev/download">officially supported version of DemCord</Link>, or
                                 contact your package maintainer for support instead.
                             </Forms.FormText>
                         </div>
@@ -297,21 +297,21 @@ export default definePlugin({
         }
 
         if (props.channel.parent_id === SUPPORT_CATEGORY_ID && PermissionStore.can(PermissionsBits.SEND_MESSAGES, props.channel)) {
-            if (props.message.content.includes("/vencord-debug") || props.message.content.includes("/vencord-plugins")) {
+            if (props.message.content.includes("/DemCord-debug") || props.message.content.includes("/DemCord-plugins")) {
                 buttons.push(
                     <Button
                         key="vc-dbg"
                         color={Button.Colors.PRIMARY}
                         onClick={async () => sendMessage(props.channel.id, { content: await generateDebugInfoMessage() })}
                     >
-                        Run /vencord-debug
+                        Run /DemCord-debug
                     </Button>,
                     <Button
                         key="vc-plg-list"
                         color={Button.Colors.PRIMARY}
                         onClick={async () => sendMessage(props.channel.id, { content: generatePluginList() })}
                     >
-                        Run /vencord-plugins
+                        Run /DemCord-plugins
                     </Button>
                 );
             }
@@ -351,13 +351,16 @@ export default definePlugin({
 
         return (
             <Card variant="warning" className={Margins.top8} defaultPadding>
-                Please do not private message Vencord plugin developers for support!
+                Please do not private message DemCord plugin developers for support!
                 <br />
-                Instead, use the Vencord support channel: {Parser.parse("https://discord.com/channels/1015060230222131221/1026515880080842772")}
+                Instead, use the DemCord support channel: {Parser.parse("https://discord.com/channels/1015060230222131221/1026515880080842772")}
                 {!ChannelStore.getChannel(SUPPORT_CHANNEL_ID) && " (Click the link to join)"}
             </Card>
         );
     }, { noop: true }),
 });
+
+
+
 
 

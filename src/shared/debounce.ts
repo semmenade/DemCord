@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,5 +30,8 @@ export function debounce<T extends Function>(func: T, delay = 300): T {
         timeout = setTimeout(() => { func(...args); }, delay);
     } as any;
 }
+
+
+
 
 

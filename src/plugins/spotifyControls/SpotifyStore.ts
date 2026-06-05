@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -162,7 +162,7 @@ export const SpotifyStore = proxyLazyWebpack(() => {
                     position_ms: Math.round(ms)
                 }
             }).catch((e: any) => {
-                console.error("[VencordSpotifyControls] Failed to seek", e);
+                console.error("[DemCordSpotifyControls] Failed to seek", e);
                 this.isSettingPosition = false;
             });
         }
@@ -199,5 +199,8 @@ export const SpotifyStore = proxyLazyWebpack(() => {
 
     return store;
 });
+
+
+
 
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -111,5 +111,8 @@ export default definePlugin({
         "message-actions": contextMenuPatch
     }
 });
+
+
+
 
 

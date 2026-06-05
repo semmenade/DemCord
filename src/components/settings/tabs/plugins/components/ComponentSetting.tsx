@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,5 +23,8 @@ import { ComponentSettingProps } from "./Common";
 export function ComponentSetting({ setting, onChange, closePluginSettings }: ComponentSettingProps<PluginSettingComponentDef>) {
     return setting.component({ setValue: onChange, option: setting, closePluginSettings });
 }
+
+
+
 
 

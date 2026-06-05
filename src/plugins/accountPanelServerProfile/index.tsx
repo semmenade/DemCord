@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * DemCord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -113,7 +113,7 @@ export default definePlugin({
         }
 
         const currentChannel = getCurrentChannel();
-        if (currentChannel?.getGuildId() == null || !UserProfile.$$vencordGetWrappedComponent()) {
+        if (currentChannel?.getGuildId() == null || !UserProfile.$$DemCordGetWrappedComponent()) {
             return originalRenderPopout();
         }
 
@@ -128,5 +128,8 @@ export default definePlugin({
         );
     }, { noop: true })
 });
+
+
+
 
 

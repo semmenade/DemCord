@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -73,9 +73,9 @@ function CloudSetupSection() {
             <SectionHeading text="Cloud Integrations" />
 
             <Paragraph size="md" className={Margins.bottom20}>
-                Vencord comes with a cloud integration that adds goodies like settings sync across devices.
-                It <Link href="https://vencord.dev/cloud/privacy">respects your privacy</Link>, and
-                the <Link href="https://github.com/Vencord/Backend">source code</Link> is AGPL 3.0 licensed so you
+                DemCord comes with a cloud integration that adds goodies like settings sync across devices.
+                It <Link href="https://DemCord.dev/cloud/privacy">respects your privacy</Link>, and
+                the <Link href="https://github.com/DemCord/Backend">source code</Link> is AGPL 3.0 licensed so you
                 can host it yourself.
             </Paragraph>
             <FormSwitch
@@ -262,5 +262,8 @@ function CloudTab() {
 }
 
 export default wrapTab(CloudTab, "Cloud");
+
+
+
 
 

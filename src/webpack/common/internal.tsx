@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ export function waitForComponent<T extends ComponentType<any> = ComponentType<an
     const lazyComponent = LazyComponent(() => {
         if (myValue) return myValue;
 
-        const error = new Error(`Vencord could not find the ${name} Component`);
+        const error = new Error(`DemCord could not find the ${name} Component`);
         logger.error(error);
 
         if (IS_DEV) throw error;
@@ -52,5 +52,8 @@ export function waitForStore(name: string, cb: (v: any) => void) {
 
     waitFor(filters.byStoreName(name), cb, { isIndirect: true });
 }
+
+
+
 
 

@@ -1,5 +1,5 @@
 {
-    "name": "vencord",
+    "name": "demcord",
     "private": "true",
     "version": "1.14.13",
     "description": "The cutest Discord client mod",
@@ -106,3 +106,4 @@
         "node": ">=18"
     }
 }
+

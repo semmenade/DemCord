@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,5 +23,8 @@ export function isTruthy<T>(item: T): item is Exclude<T, 0 | "" | false | null |
 export function isNonNullish<T>(item: T): item is Exclude<T, null | undefined> {
     return item != null;
 }
+
+
+
 
 

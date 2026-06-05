@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * DemCord, a Discord client mod
  * Copyright (c) 2024 Vendicated, Nuckyz, and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -676,5 +676,8 @@ function diffErroredPatch(code: string, lastCode: string, match: RegExpMatchArra
     const [titleFmt, ...titleElements] = Logger.makeTitle("white", "Diff");
     logger.errorCustomFmt(titleFmt + fmt, ...titleElements, ...elements);
 }
+
+
+
 
 

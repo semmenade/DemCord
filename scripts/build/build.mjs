@@ -1,6 +1,6 @@
-#!/usr/bin/node
+﻿#!/usr/bin/node
 /*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -56,7 +56,7 @@ const nodeCommonOpts = {
     external: ["electron", "original-fs", "~pluginNatives", ...commonOpts.external]
 };
 
-const sourceMapFooter = s => watch ? "" : `//# sourceMappingURL=vencord://${s}.js.map`;
+const sourceMapFooter = s => watch ? "" : `//# sourceMappingURL=DemCord://${s}.js.map`;
 const sourcemap = watch ? "inline" : "external";
 
 /**
@@ -122,7 +122,7 @@ const buildConfigs = ([
         ...nodeCommonOpts,
         entryPoints: ["src/main/index.ts"],
         outfile: "dist/patcher.js",
-        footer: { js: "//# sourceURL=file:///VencordPatcher\n" + sourceMapFooter("patcher") },
+        footer: { js: "//# sourceURL=file:///DemCordPatcher\n" + sourceMapFooter("patcher") },
         sourcemap,
         plugins: [
             // @ts-ignore this is never undefined
@@ -141,8 +141,8 @@ const buildConfigs = ([
         outfile: "dist/renderer.js",
         format: "iife",
         target: ["esnext"],
-        footer: { js: "//# sourceURL=file:///VencordRenderer\n" + sourceMapFooter("renderer") },
-        globalName: "Vencord",
+        footer: { js: "//# sourceURL=file:///DemCordRenderer\n" + sourceMapFooter("renderer") },
+        globalName: "DemCord",
         sourcemap,
         plugins: [
             globPlugins("discordDesktop"),
@@ -158,7 +158,7 @@ const buildConfigs = ([
         ...nodeCommonOpts,
         entryPoints: ["src/preload.ts"],
         outfile: "dist/preload.js",
-        footer: { js: "//# sourceURL=file:///VencordPreload\n" + sourceMapFooter("preload") },
+        footer: { js: "//# sourceURL=file:///DemCordPreload\n" + sourceMapFooter("preload") },
         sourcemap,
         define: {
             ...defines,
@@ -167,12 +167,12 @@ const buildConfigs = ([
         }
     },
 
-    // Vencord Desktop main & renderer & preload
+    // DemCord Desktop main & renderer & preload
     {
         ...nodeCommonOpts,
         entryPoints: ["src/main/index.ts"],
-        outfile: "dist/vencordDesktopMain.js",
-        footer: { js: "//# sourceURL=file:///VencordDesktopMain\n" + sourceMapFooter("vencordDesktopMain") },
+        outfile: "dist/demcordDesktopMain.js",
+        footer: { js: "//# sourceURL=file:///demcordDesktopMain\n" + sourceMapFooter("demcordDesktopMain") },
         sourcemap,
         plugins: [
             ...nodeCommonOpts.plugins,
@@ -187,11 +187,11 @@ const buildConfigs = ([
     {
         ...commonOpts,
         entryPoints: ["src/Vencord.ts"],
-        outfile: "dist/vencordDesktopRenderer.js",
+        outfile: "dist/demcordDesktopRenderer.js",
         format: "iife",
         target: ["esnext"],
-        footer: { js: "//# sourceURL=file:///VencordDesktopRenderer\n" + sourceMapFooter("vencordDesktopRenderer") },
-        globalName: "Vencord",
+        footer: { js: "//# sourceURL=file:///demcordDesktopRenderer\n" + sourceMapFooter("demcordDesktopRenderer") },
+        globalName: "DemCord",
         sourcemap,
         plugins: [
             globPlugins("vesktop"),
@@ -206,8 +206,8 @@ const buildConfigs = ([
     {
         ...nodeCommonOpts,
         entryPoints: ["src/preload.ts"],
-        outfile: "dist/vencordDesktopPreload.js",
-        footer: { js: "//# sourceURL=file:///VencordPreload\n" + sourceMapFooter("vencordDesktopPreload") },
+        outfile: "dist/demcordDesktopPreload.js",
+        footer: { js: "//# sourceURL=file:///DemCordPreload\n" + sourceMapFooter("demcordDesktopPreload") },
         sourcemap,
         define: {
             ...defines,
@@ -218,3 +218,6 @@ const buildConfigs = ([
 ]);
 
 await buildOrWatchAll(buildConfigs);
+
+
+

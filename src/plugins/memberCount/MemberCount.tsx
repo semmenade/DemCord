@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * DemCord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -107,5 +107,8 @@ export function MemberCount({ isTooltip, tooltipGuildId }: { isTooltip?: true; t
         </div>
     );
 }
+
+
+
 
 

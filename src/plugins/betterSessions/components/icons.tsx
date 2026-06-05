@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -112,5 +112,8 @@ export const UnknownIcon = (props: React.PropsWithChildren<SVGProps<SVGSVGElemen
 );
 
 export const MobileIcon = LazyComponent(() => findByCode("M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38"));
+
+
+
 
 

@@ -9,3 +9,4 @@
     background-color: color-mix(in oklab, var(--custom-folder-color, var(--badge-background-default)) 40%, transparent);
 }
 
+

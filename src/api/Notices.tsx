@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ export function nextNotice() {
     currentNotice = noticesQueue.shift();
 
     if (currentNotice) {
-        NoticesModule.show(...currentNotice, "VencordNotice");
+        NoticesModule.show(...currentNotice, "DemCordNotice");
     }
 }
 
@@ -47,5 +47,8 @@ export function showNotice(message: ReactNode, buttonText: string, onOkClick: ()
     noticesQueue.push(["GENERIC", notice, buttonText, onOkClick]);
     if (!currentNotice) nextNotice();
 }
+
+
+
 
 

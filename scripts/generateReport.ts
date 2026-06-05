@@ -1,5 +1,5 @@
-/*
- * Vencord, a modification for Discord's desktop app
+﻿/*
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -93,7 +93,7 @@ function toCodeBlock(s: string, indentation = 0, isDiscord = false) {
 async function printReport() {
     console.log();
 
-    console.log("# Vencord Report" + (CANARY ? " (Canary)" : ""));
+    console.log("# DemCord Report" + (CANARY ? " (Canary)" : ""));
 
     console.log();
 
@@ -194,7 +194,7 @@ async function printReport() {
         }
 
         const body = JSON.stringify({
-            username: "Vencord Reporter" + (CANARY ? " (Canary)" : ""),
+            username: "DemCord Reporter" + (CANARY ? " (Canary)" : ""),
             embeds
         });
 
@@ -241,7 +241,7 @@ page.on("console", async e => {
 
     const firstArg = await rawArgs[0]?.jsonValue();
 
-    const isVencord = firstArg === "[Vencord]";
+    const isDemCord = firstArg === "[DemCord]";
     const isDebug = firstArg === "[PUP_DEBUG]";
     const isReporterMeta = firstArg === "[REPORTER_META]";
 
@@ -251,7 +251,7 @@ page.on("console", async e => {
     }
 
     outer:
-    if (isVencord) {
+    if (isDemCord) {
         try {
             var args = await Promise.all(e.args().map(a => a.jsonValue()));
         } catch {
@@ -357,3 +357,4 @@ await page.evaluateOnNewDocument(`
 `);
 
 await page.goto(CANARY ? "https://canary.discord.com/login" : "https://discord.com/login");
+

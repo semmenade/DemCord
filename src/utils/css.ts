@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * DemCord, a Discord client mod
  * Copyright (c) 2025 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -33,5 +33,8 @@ export const classNameFactory = (prefix: string = "") => (...args: ClassNameFact
     }
     return Array.from(classNames, name => prefix + name).join(" ");
 };
+
+
+
 
 

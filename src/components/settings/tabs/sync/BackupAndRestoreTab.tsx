@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ function BackupAndRestoreTab() {
                 <Text variant="text-md/normal" className={Margins.bottom8}>
                     You can import and export your DemCord Settings as a JSON file.
                     This allows you to easily transfer your settings to another device,
-                    or recover your settings after reinstalling Vencord or Discord.
+                    or recover your settings after reinstalling DemCord or Discord.
                 </Text>
 
                 <Heading tag="h4">Settings Export contains:</Heading>
@@ -63,5 +63,8 @@ function BackupAndRestoreTab() {
 }
 
 export default wrapTab(BackupAndRestoreTab, "Backup & Restore");
+
+
+
 
 

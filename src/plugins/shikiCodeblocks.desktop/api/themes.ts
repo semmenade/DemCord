@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2024 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -97,5 +97,8 @@ export const getTheme = (url: string): Promise<IShikiTheme> => {
     if (themeCache.has(url)) return Promise.resolve(themeCache.get(url)!);
     return fetch(url).then(res => res.json());
 };
+
+
+
 
 

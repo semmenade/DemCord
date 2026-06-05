@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * DemCord, a Discord client mod
  * Copyright (c) 2023 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -68,5 +68,8 @@ export default definePlugin({
         return ReadStateStore.getOldestUnreadMessageId(message.channel_id) === message.id;
     },
 });
+
+
+
 
 

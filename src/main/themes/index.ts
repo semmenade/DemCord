@@ -3,7 +3,7 @@
 /*!
  * BetterDiscord addon meta parser
  * Copyright 2023 BetterDiscord contributors
- * Copyright 2023 Vendicated and Vencord contributors
+ * Copyright 2023 Vendicated and DemCord contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,5 +79,8 @@ export function getThemeInfo(css: string, fileName: string): UserThemeHeader {
     delete header[""];
     return makeHeader(fileName, header);
 }
+
+
+
 
 

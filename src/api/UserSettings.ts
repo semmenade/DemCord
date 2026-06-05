@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -81,5 +81,8 @@ export function getUserSetting<T = any>(group: string, name: string): UserSettin
 export function getUserSettingLazy<T = any>(group: string, name: string) {
     return proxyLazy(() => getUserSetting<T>(group, name));
 }
+
+
+
 
 

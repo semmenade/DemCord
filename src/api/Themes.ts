@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import { createAndAppendStyle } from "@utils/css";
 import { ThemeStore } from "@vencord/discord-types";
 import { PopoutWindowStore } from "@webpack/common";
 
-import { userStyleRootNode, vencordRootNode } from "./Styles";
+import { userStyleRootNode, DemCordRootNode } from "./Styles";
 
 let style: HTMLStyleElement;
 let themesStyle: HTMLStyleElement;
@@ -29,7 +29,7 @@ let themesStyle: HTMLStyleElement;
 async function toggle(isEnabled: boolean) {
     if (!style) {
         if (isEnabled) {
-            style = createAndAppendStyle("vencord-custom-css", userStyleRootNode);
+            style = createAndAppendStyle("DemCord-custom-css", userStyleRootNode);
             VencordNative.quickCss.addChangeListener(css => {
                 style.textContent = css;
                 // At the time of writing this, changing textContent resets the disabled state
@@ -43,7 +43,7 @@ async function toggle(isEnabled: boolean) {
 }
 
 async function initThemes() {
-    themesStyle ??= createAndAppendStyle("vencord-themes", userStyleRootNode);
+    themesStyle ??= createAndAppendStyle("DemCord-themes", userStyleRootNode);
 
     const { themeLinks, enabledThemes } = Settings;
 
@@ -73,7 +73,7 @@ async function initThemes() {
             links.push(URL.createObjectURL(blob));
         }
     } else {
-        const localThemes = enabledThemes.map(theme => `vencord:///themes/${theme}?v=${Date.now()}`);
+        const localThemes = enabledThemes.map(theme => `DemCord:///themes/${theme}?v=${Date.now()}`);
         links.push(...localThemes);
     }
 
@@ -88,9 +88,9 @@ function applyToPopout(popoutWindow: Window | undefined, key: string) {
 
     const doc = popoutWindow.document;
 
-    doc.querySelector("vencord-root")?.remove();
+    doc.querySelector("DemCord-root")?.remove();
 
-    doc.documentElement.appendChild(vencordRootNode.cloneNode(true));
+    doc.documentElement.appendChild(DemCordRootNode.cloneNode(true));
 }
 
 function updatePopoutWindows() {
@@ -137,5 +137,8 @@ export function initQuickCssThemeStore(themeStore: ThemeStore) {
         initThemes();
     });
 }
+
+
+
 
 

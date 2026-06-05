@@ -1,5 +1,5 @@
-/*
- * Vencord, a modification for Discord's desktop app
+﻿/*
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -62,7 +62,7 @@ async function ensureBinary() {
 
     const res = await fetch(BASE_URL + filename, {
         headers: {
-            "User-Agent": "Vencord (https://github.com/Vendicated/Vencord)",
+            "User-Agent": "DemCord (https://github.com/Vendicated/DemCord)",
             "If-None-Match": etag
         }
     });
@@ -96,7 +96,7 @@ async function ensureBinary() {
                 execSync(cmd);
             } catch { }
         };
-        logAndRun(`sudo spctl --add '${outputFile}' --label "Vencord Installer"`);
+        logAndRun(`sudo spctl --add '${outputFile}' --label "DemCord Installer"`);
         logAndRun(`sudo xattr -d com.apple.quarantine '${outputFile}'`);
     } else {
         // WHY DOES NODE FETCH RETURN A WEB STREAM OH MY GOD
@@ -133,3 +133,8 @@ try {
 } catch {
     console.error("Something went wrong. Please check the logs above.");
 }
+
+
+
+
+

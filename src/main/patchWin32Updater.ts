@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a modification for Discord's desktop app
+ * DemCord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -53,7 +53,7 @@ function patchLatest() {
 
         if (!existsSync(app) || statSync(app).isDirectory()) return;
 
-        console.info("[Vencord] Detected Host Update. Repatching...");
+        console.info("[DemCord] Detected Host Update. Repatching...");
 
         renameSync(app, _app);
         mkdirSync(app);
@@ -63,12 +63,15 @@ function patchLatest() {
         }));
         writeFileSync(join(app, "index.js"), `require(${JSON.stringify(join(__dirname, "patcher.js"))});`);
     } catch (err) {
-        console.error("[Vencord] Failed to repatch latest host update", err);
+        console.error("[DemCord] Failed to repatch latest host update", err);
     }
 }
 
 // Try to patch latest on before-quit
 // Discord's Win32 updater will call app.quit() on restart and open new version on will-quit
 app.on("before-quit", patchLatest);
+
+
+
 
 

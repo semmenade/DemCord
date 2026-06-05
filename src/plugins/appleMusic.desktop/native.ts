@@ -1,10 +1,10 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * DemCord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { VENCORD_USER_AGENT } from "@shared/vencordUserAgent";
+import { DemCord_USER_AGENT } from "@shared/vencordUserAgent";
 import { execFile } from "child_process";
 import { promisify } from "util";
 
@@ -40,7 +40,7 @@ async function fetchRemoteData({ id, name, artist, album }: { id: string, name: 
 
         const songData = await fetch(dataUrl, {
             headers: {
-                "user-agent": VENCORD_USER_AGENT,
+                "user-agent": DemCord_USER_AGENT,
             },
         })
             .then(r => r.json())
@@ -109,5 +109,9 @@ export async function fetchTrackData(): Promise<TrackData | null> {
 
     return { name, album, artist, playerPosition, duration, ...remoteData };
 }
+
+
+
+
 
 

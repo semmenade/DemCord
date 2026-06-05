@@ -1,5 +1,5 @@
 ﻿/*
- * Vencord, a Discord client mod
+ * DemCord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -144,5 +144,8 @@ export function moveChannel(channelId: string, direction: -1 | 1) {
 
     swapElementsInArray(category.channels, a, b);
 }
+
+
+
 
 
