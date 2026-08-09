@@ -128,3 +128,4 @@ function isDomainAllowed(_: IpcMainInvokeEvent, url: string, directives: string[
 
 
 
+

@@ -17,10 +17,10 @@
 */
 
 export const DemCord_FILES = [
-    IS_DISCORD_DESKTOP ? "patcher.js" : "vencordDesktopMain.js",
-    IS_DISCORD_DESKTOP ? "preload.js" : "vencordDesktopPreload.js",
-    IS_DISCORD_DESKTOP ? "renderer.js" : "vencordDesktopRenderer.js",
-    IS_DISCORD_DESKTOP ? "renderer.css" : "vencordDesktopRenderer.css",
+    IS_DISCORD_DESKTOP ? "patcher.js" : "demcordDesktopMain.js",
+    IS_DISCORD_DESKTOP ? "preload.js" : "demcordDesktopPreload.js",
+    IS_DISCORD_DESKTOP ? "renderer.js" : "demcordDesktopRenderer.js",
+    IS_DISCORD_DESKTOP ? "renderer.css" : "demcordDesktopRenderer.css",
 ];
 
 export function serializeErrors(func: (...args: any[]) => any) {
@@ -44,6 +44,7 @@ export function serializeErrors(func: (...args: any[]) => any) {
         }
     };
 }
+
 
 
 

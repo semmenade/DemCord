@@ -45,6 +45,9 @@
         "virtual-merge": "^1.0.1"
     },
     "devDependencies": {
+        "@electron-forge/cli": "^7.11.2",
+        "@electron-forge/maker-squirrel": "^7.11.2",
+        "@electron-forge/maker-zip": "^7.11.2",
         "@stylistic/eslint-plugin": "^5.10.0",
         "@types/chrome": "^0.1.40",
         "@types/lodash": "^4.17.24",
@@ -54,6 +57,8 @@
         "@types/yazl": "^3.3.1",
         "@vencord/discord-types": "link:packages/discord-types",
         "diff": "^9.0.0",
+        "electron": "^42.3.3",
+        "electron-builder": "^26.15.0",
         "esbuild": "^0.28.0",
         "eslint": "10.2.0",
         "eslint-import-resolver-alias": "^1.1.2",
@@ -104,6 +109,6 @@
     },
     "engines": {
         "node": ">=18"
-    }
+    },
+    "main": "index.js"
 }
-

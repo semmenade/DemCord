@@ -28,8 +28,8 @@ import { installExt } from "./utils/extensions";
 
 if (IS_VESKTOP || !IS_VANILLA) {
     app.whenReady().then(() => {
-        protocol.handle("DemCord", ({ url: unsafeUrl }) => {
-            let url = decodeURI(unsafeUrl).slice("DemCord://".length).replace(/\?v=\d+$/, "");
+        protocol.handle("demcord", ({ url: unsafeUrl }) => {
+            let url = decodeURI(unsafeUrl).slice("demcord://".length).replace(/\?v=\d+$/, "");
 
             if (url.endsWith("/")) url = url.slice(0, -1);
 
@@ -51,11 +51,11 @@ if (IS_VESKTOP || !IS_VANILLA) {
 
             switch (url) {
                 case "renderer.js.map":
-                case "vencordDesktopRenderer.js.map":
+                case "demcordDesktopRenderer.js.map":
                 case "preload.js.map":
-                case "vencordDesktopPreload.js.map":
+                case "demcordDesktopPreload.js.map":
                 case "patcher.js.map":
-                case "vencordDesktopMain.js.map":
+                case "demcordDesktopMain.js.map":
                     return net.fetch(pathToFileURL(join(__dirname, url)).toString());
                 default:
                     return new Response(null, {
@@ -79,6 +79,8 @@ if (IS_VESKTOP || !IS_VANILLA) {
 if (IS_DISCORD_DESKTOP) {
     require("./patcher");
 }
+
+
 
 
 
