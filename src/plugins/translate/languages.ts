@@ -249,7 +249,7 @@ export const DeeplLanguages = {
     "mr": "Marathi",
     "mn": "Mongolian",
     "ne": "Nepali",
-    "nb": "Norwegian (BokmÃ¥l)",
+    "nb": "Norwegian (Bokml)",
     "oc": "Occitan",
     "om": "Oromo",
     "pag": "Pangasinan",
@@ -349,7 +349,7 @@ export const KagiLanguages = {
     "ban": "Balinese",
     "bal": "Baluchi",
     "bm": "Bambara",
-    "bci": "BaoulÃ©",
+    "bci": "Baoul",
     "ba": "Bashkir",
     "eu": "Basque",
     "btk": "Batak",
@@ -503,7 +503,7 @@ export const KagiLanguages = {
     "se": "Northern Sami",
     "ns": "Northern Sotho",
     "no": "Norwegian",
-    "nb": "Norwegian (BokmÃ¥l)",
+    "nb": "Norwegian (Bokml)",
     "nn": "Norwegian (Nynorsk)",
     "nus": "Nuer",
     "oc": "Occitan",
@@ -520,7 +520,7 @@ export const KagiLanguages = {
     "pt_pt": "Portuguese (Portugal)",
     "pa": "Punjabi",
     "qu": "Quechua",
-    "kek": "QÊ¼eqchiÊ¼",
+    "kek": "Qeqchi",
     "rm": "Rhaeto_Romanic",
     "rom": "Romani",
     "ro": "Romanian",
@@ -587,7 +587,7 @@ export const KagiLanguages = {
     "vec": "Venetian",
     "vi": "Vietnamese",
     "vo": "Volapuk",
-    "vro": "VÃµro",
+    "vro": "Vro",
     "wa": "Walloon",
     "war": "Waray",
     "cy": "Welsh",
@@ -602,6 +602,7 @@ export const KagiLanguages = {
     "za": "Zhuang",
     "zu": "Zulu"
 } as const;
+
 
 
 

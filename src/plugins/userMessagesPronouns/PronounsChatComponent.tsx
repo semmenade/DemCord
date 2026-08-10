@@ -50,7 +50,7 @@ function PronounsChatComponent({ message }: { message: Message; }) {
                 <span
                     {...tooltipProps}
                     className={classes(TimestampClasses.timestampInline, TimestampClasses.timestamp)}
-                >â€¢ {pronouns}</span>
+                > {pronouns}</span>
             )}
         </Tooltip>
     );
@@ -71,6 +71,7 @@ export const CompactPronounsChatComponentWrapper = ErrorBoundary.wrap(({ message
 
     return <PronounsChatComponent message={message} />;
 }, { noop: true });
+
 
 
 

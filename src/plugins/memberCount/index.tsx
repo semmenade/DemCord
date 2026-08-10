@@ -61,7 +61,7 @@ export const cl = classNameFactory("vc-membercount-");
 
 export default definePlugin({
     name: "MemberCount",
-    description: "Shows the number of online members, total members, and users in voice channels on the server â€” in the member list and tooltip.",
+    description: "Shows the number of online members, total members, and users in voice channels on the server  in the member list and tooltip.",
     tags: ["Servers", "Utility"],
     authors: [Devs.Ven, Devs.Commandtechno, Devs.Apexo],
     settings,
@@ -89,6 +89,7 @@ export default definePlugin({
     render: ErrorBoundary.wrap(() => <MemberCount />, { noop: true }),
     renderTooltip: ErrorBoundary.wrap(guild => <MemberCount isTooltip tooltipGuildId={guild.id} />, { noop: true })
 });
+
 
 
 

@@ -2,7 +2,7 @@
 import { definePluginSettings } from "@api/Settings";
 
 const settings = definePluginSettings({
-    triggers: { type: OptionType.STRING, description: "Keyword:emoji pairs e.g. fire:🔥,lol:😂", default: "fire:🔥,lol:😂" }
+    triggers: { type: OptionType.STRING, description: "Keyword:emoji pairs e.g. fire:,lol:", default: "fire:,lol:" }
 });
 
 export default definePlugin({
@@ -11,3 +11,4 @@ export default definePlugin({
     authors: [{ name: "DemCord", id: 0n }],
     settings
 });
+

@@ -9,7 +9,8 @@ export default definePlugin({
         find: "guildTooltip",
         replacement: {
             match: /(?<=guildTooltip.{0,200})\i\.name/,
-            replace: "$&+` • `+(arguments[0]?.guild?.memberCount||``)"
+            replace: "$&+`  `+(arguments[0]?.guild?.memberCount||``)"
         }
     }]
 });
+

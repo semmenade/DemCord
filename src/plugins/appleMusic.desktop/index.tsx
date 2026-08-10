@@ -102,7 +102,7 @@ const settings = definePluginSettings({
     stateString: {
         type: OptionType.STRING,
         description: "Activity state format string",
-        default: "{artist} Â· {album}"
+        default: "{artist}  {album}"
     },
     largeImageType: {
         type: OptionType.SELECT,
@@ -250,6 +250,7 @@ export default definePlugin({
         };
     }
 });
+
 
 
 

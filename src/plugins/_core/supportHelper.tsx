@@ -86,7 +86,7 @@ async function generateDebugInfoMessage() {
 
     const info = {
         DemCord:
-            `v${VERSION} â€¢ [${gitHash}](<https://github.com/Vendicated/DemCord/commit/${gitHash}>)` +
+            `v${VERSION}  [${gitHash}](<https://github.com/Vendicated/DemCord/commit/${gitHash}>)` +
             `${SettingsPlugin.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
         Client: `${RELEASE_CHANNEL} ~ ${client}`,
         Platform: navigator.platform
@@ -105,7 +105,7 @@ async function generateDebugInfoMessage() {
 
     let content = `>>> ${Object.entries(info).map(([k, v]) => `**${k}**: ${v}`).join("\n")}`;
     content += "\n" + Object.entries(commonIssues)
-        .filter(([, v]) => v).map(([k]) => `âš ï¸ ${k}`)
+        .filter(([, v]) => v).map(([k]) => ` ${k}`)
         .join("\n");
 
     return content.trim();
@@ -359,6 +359,7 @@ export default definePlugin({
         );
     }, { noop: true }),
 });
+
 
 
 

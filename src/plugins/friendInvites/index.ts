@@ -39,8 +39,8 @@ export default definePlugin({
 
                 sendBotMessage(ctx.channel.id, {
                     content: `
-                        discord.gg/${invite.code} Â·
-                        Expires: <t:${new Date(invite.expires_at).getTime() / 1000}:R> Â·
+                        discord.gg/${invite.code} 
+                        Expires: <t:${new Date(invite.expires_at).getTime() / 1000}:R> 
                         Max uses: \`${invite.max_uses}\`
                     `.trim().replace(/\s+/g, " ")
                 });
@@ -54,8 +54,8 @@ export default definePlugin({
                 const invites = await FriendInvites.getAllFriendInvites();
                 const friendInviteList = invites.map(i =>
                     `
-                    _discord.gg/${i.code}_ Â·
-                    Expires: <t:${new Date(i.expires_at).getTime() / 1000}:R> Â·
+                    _discord.gg/${i.code}_ 
+                    Expires: <t:${new Date(i.expires_at).getTime() / 1000}:R> 
                     Times used: \`${i.uses}/${i.max_uses}\`
                     `.trim().replace(/\s+/g, " ")
                 );
@@ -79,6 +79,7 @@ export default definePlugin({
         },
     ]
 });
+
 
 
 

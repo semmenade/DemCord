@@ -29,7 +29,7 @@ export const cl = classNameFactory("vc-betterSessions-");
 export const savedSessionsCache: Map<string, { name: string, isNew: boolean; }> = new Map();
 
 export function getDefaultName(clientInfo: SessionInfo["session"]["client_info"]) {
-    return `${clientInfo.os} Â· ${clientInfo.platform}`;
+    return `${clientInfo.os}  ${clientInfo.platform}`;
 }
 
 export function saveSessionsToDataStore() {
@@ -90,6 +90,7 @@ export function GetPlatformIcon(platform: string) {
             return UnknownIcon;
     }
 }
+
 
 
 

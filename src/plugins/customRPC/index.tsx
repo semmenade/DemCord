@@ -274,7 +274,7 @@ export default definePlugin({
                         You can't see your own buttons on your profile, but everyone else can see it fine.
                     </Forms.FormText>
                     <Forms.FormText>
-                        Some weird unicode text ("fonts" ð–‘ð–Žð–ð–Š ð–™ð–ð–Žð–˜) may cause the rich presence to not show up, try using normal letters instead.
+                        Some weird unicode text ("fonts"  ) may cause the rich presence to not show up, try using normal letters instead.
                     </Forms.FormText>
                 </Flex>
 
@@ -291,6 +291,7 @@ export default definePlugin({
         );
     }
 });
+
 
 
 

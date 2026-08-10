@@ -20,7 +20,8 @@ export default definePlugin({
             const text = opts.find((o: any) => o.name === "text")?.value;
             const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${settings.store.targetLang}&dt=t&q=${encodeURIComponent(text)}`);
             const data = await res.json();
-            return { content: `🌐 ${data[0][0][0]}` };
+            return { content: ` ${data[0][0][0]}` };
         }
     }]
 });
+

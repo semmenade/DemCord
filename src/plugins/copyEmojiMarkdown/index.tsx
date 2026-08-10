@@ -43,7 +43,7 @@ function getEmojiMarkdown(target: Target, copyUnicode: boolean): string {
 const settings = definePluginSettings({
     copyUnicode: {
         type: OptionType.BOOLEAN,
-        description: "Copy the raw unicode character instead of :name: for default emojis (ðŸ‘½)",
+        description: "Copy the raw unicode character instead of :name: for default emojis ()",
         default: true,
     },
 });
@@ -74,6 +74,7 @@ export default definePlugin({
         },
     },
 });
+
 
 
 

@@ -161,7 +161,7 @@ export default definePlugin({
             savedSessionsCache.set(session.id_hash, { name: "", isNew: true });
             showNotification({
                 title: "BetterSessions",
-                body: `New session:\n${session.client_info.os} Â· ${session.client_info.platform} Â· ${session.client_info.location}`,
+                body: `New session:\n${session.client_info.os}  ${session.client_info.platform}  ${session.client_info.location}`,
                 permanent: true,
                 onClick: () => SettingsRouter.openUserSettings("sessions_panel")
             });
@@ -209,6 +209,7 @@ export default definePlugin({
         clearInterval(this.checkInterval);
     }
 });
+
 
 
 
