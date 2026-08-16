@@ -8,8 +8,18 @@ export default definePlugin({
         this.styleEl = document.createElement("style");
         this.styleEl.id = "demcord-bubbles";
         this.styleEl.textContent = `
-            [class*="message"] [class*="contents"] { background: rgba(168,85,247,0.15); border-radius: 18px; padding: 8px 14px !important; display: inline-block; max-width: 80%; margin: 2px 0; border: 1px solid rgba(168,85,247,0.2); }
-            [class*="message"]:hover [class*="contents"] { background: rgba(168,85,247,0.25); }
+            [class*="messageContent"] {
+                background: rgba(168,85,247,0.12) !important;
+                border-radius: 0 14px 14px 14px !important;
+                padding: 6px 12px !important;
+                display: inline-block !important;
+                max-width: 85% !important;
+                border: 1px solid rgba(168,85,247,0.15) !important;
+                margin-top: 2px !important;
+            }
+            [class*="messageContent"]:hover {
+                background: rgba(168,85,247,0.2) !important;
+            }
         `;
         document.head.appendChild(this.styleEl);
     },

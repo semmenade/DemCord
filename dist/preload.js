@@ -1,4 +1,4 @@
-// DemCord 61d1bd27
+// DemCord e5b24784
 // Standalone: false
 // Platform: win32
 // Updater Disabled: false
