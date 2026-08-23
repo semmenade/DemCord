@@ -274,15 +274,15 @@ export const stopPlugin = traceFunction("stopPlugin", function stopPlugin(p: Plu
         logger.info("Stopping plugin", name);
         if (!p.started) {
             logger.warn(`${name} already stopped`);
-            return false;
+            return true;
         }
         try {
             p.stop();
         } catch (e) {
             logger.error(`Failed to stop ${name}\n`, e);
-            return false;
         }
     }
+
 
     p.started = false;
 
