@@ -1,0 +1,17 @@
+﻿{
+    "appId":  "dev.demcord.watcher",
+    "productName":  "DemCord",
+    "electronVersion":  "42.3.3",
+    "directories":  {
+                        "output":  "C:\\Users\\mythm\\OneDrive\\DemCordWatcher"
+                    },
+    "files":  [
+                  "main.js",
+                  "package.json",
+                  "demcord.ico"
+              ],
+    "win":  {
+                "target":  "portable",
+                "icon":  "demcord.ico"
+            }
+}
