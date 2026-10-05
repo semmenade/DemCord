@@ -1,0 +1,7 @@
+﻿*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+[class*="scroller"]{contain:layout style paint;will-change:transform;}
+[class*="messages"]{contain:layout style paint;}
+[class*="sidebar"]{contain:layout;}
+img,video{decoding:async;}
+[class*="guild"]{contain:layout style;}
+[class*="channel"]{contain:layout style;}
