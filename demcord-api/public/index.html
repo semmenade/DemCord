@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DemCord Admin Dashboard</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0d0010; color: #e9d5ff; font-family: -apple-system, sans-serif; }
+.header { background: linear-gradient(135deg, #4b1080, #7b2fbe); padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+.header h1 { font-size: 22px; font-weight: 800; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 20px 30px; }
+.stat-card { background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); border-radius: 12px; padding: 16px; text-align: center; }
+.stat-card .value { font-size: 32px; font-weight: 800; color: #a855f7; }
+.stat-card .label { font-size: 12px; color: #9b72cf; margin-top: 4px; }
+.container { padding: 0 30px 30px; }
+.section { background: rgba(26,0,51,0.8); border: 1px solid rgba(168,85,247,0.2); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.section h2 { font-size: 16px; color: #c084fc; margin-bottom: 16px; }
+input, select { background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); border-radius: 8px; color: #e9d5ff; padding: 8px 12px; width: 100%; margin-bottom: 8px; font-size: 14px; }
+button { padding: 10px 20px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 14px; margin-right: 8px; }
+.btn-primary { background: linear-gradient(135deg, #7b2fbe, #a855f7); color: white; }
+.btn-danger { background: #dc2626; color: white; }
+.btn-success { background: #16a34a; color: white; }
+.btn-secondary { background: rgba(168,85,247,0.2); color: #e9d5ff; border: 1px solid rgba(168,85,247,0.3); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 12px; background: rgba(168,85,247,0.15); color: #c084fc; }
+td { padding: 10px 12px; border-bottom: 1px solid rgba(168,85,247,0.1); }
+tr:hover td { background: rgba(168,85,247,0.05); }
+.role-badge { padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; }
+.role-founder { background: #ffd700; color: #000; }
+.role-cofounder { background: #c0c0c0; color: #000; }
+.role-manager { background: #9b59b6; color: #fff; }
+.role-admin { background: #e74c3c; color: #fff; }
+.role-mod { background: #3498db; color: #fff; }
+.role-vip { background: #f39c12; color: #000; }
+.role-mains { background: #2ecc71; color: #000; }
+.role-buyer { background: #1abc9c; color: #000; }
+.role-user { background: rgba(168,85,247,0.3); color: #e9d5ff; }
+.live-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 6px; animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.alert { padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; font-size: 13px; }
+.alert-success { background: rgba(34,197,94,0.1); border: 1px solid #22c55e; color: #22c55e; }
+.alert-error { background: rgba(239,68,68,0.1); border: 1px solid #ef4444; color: #ef4444; }
+#alert-box { display: none; }
+</style>
+</head>
+<body>
+<div class="header">
+    <h1>DemCord Admin Dashboard</h1>
+    <div style="display:flex;align-items:center;gap:12px">
+        <span><span class="live-dot"></span><span id="active-count">0</span> active users</span>
+        <input type="password" id="admin-key" placeholder="Admin Key" style="width:200px;margin:0">
+    </div>
+</div>
+
+<div class="stats">
+    <div class="stat-card"><div class="value" id="stat-active">0</div><div class="label">Active Users</div></div>
+    <div class="stat-card"><div class="value" id="stat-total">0</div><div class="label">Total Users</div></div>
+    <div class="stat-card"><div class="value" id="stat-installs">0</div><div class="label">Total Installs</div></div>
+</div>
+
+<div class="container">
+    <div id="alert-box" class="alert"></div>
+
+    <div class="section">
+        <h2>User Management</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div>
+                <input type="text" id="role-userid" placeholder="Discord User ID">
+                <select id="role-select">
+                    <option value="user">User</option>
+                    <option value="buyer">Buyer</option>
+                    <option value="mains">Mains</option>
+                    <option value="vip">VIP</option>
+                    <option value="mod">Mod</option>
+                    <option value="admin">Admin</option>
+                    <option value="manager">Manager</option>
+                    <option value="cofounder">Co-Founder</option>
+                    <option value="founder">Founder</option>
+                </select>
+                <button class="btn-primary" onclick="setRole()">Set Role</button>
+            </div>
+            <div>
+                <input type="text" id="ban-userid" placeholder="Discord User ID">
+                <input type="text" id="ban-reason" placeholder="Ban reason">
+                <button class="btn-danger" onclick="banUser()">Ban User</button>
+                <button class="btn-success" onclick="unbanUser()">Unban User</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>DemCord Points Management</h2>
+        <div style="display:flex;gap:12px;align-items:flex-end">
+            <input type="text" id="dp-userid" placeholder="Discord User ID" style="flex:1;margin:0">
+            <input type="number" id="dp-amount" placeholder="Amount (negative to subtract)" style="flex:1;margin:0">
+            <button class="btn-primary" onclick="adjustDP()">Adjust DP</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>All Users</h2>
+        <button class="btn-secondary" onclick="loadUsers()" style="margin-bottom:12px">Refresh Users</button>
+        <div style="overflow-x:auto">
+            <table>
+                <thead><tr><th>Username</th><th>Discord ID</th><th>Role</th><th>DP</th><th>Version</th><th>Joined</th><th>Last Seen</th><th>Actions</th></tr></thead>
+                <tbody id="users-table"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+const API = window.location.origin;
+let adminKey = () => document.getElementById("admin-key").value;
+
+function showAlert(msg, type = "success") {
+    const el = document.getElementById("alert-box");
+    el.className = `alert alert-${type}`;
+    el.textContent = msg;
+    el.style.display = "block";
+    setTimeout(() => el.style.display = "none", 4000);
+}
+
+async function api(endpoint, method = "GET", body = null) {
+    const opts = { method, headers: { "Content-Type": "application/json", "x-admin-key": adminKey() } };
+    if (body) opts.body = JSON.stringify(body);
+    const res = await fetch(API + endpoint, opts);
+    return res.json();
+}
+
+async function loadStats() {
+    const data = await fetch(API + "/api/stats").then(r => r.json());
+    document.getElementById("stat-active").textContent = data.activeUsers;
+    document.getElementById("stat-total").textContent = data.totalUsers;
+    document.getElementById("stat-installs").textContent = data.totalInstalls;
+    document.getElementById("active-count").textContent = data.activeUsers;
+}
+
+async function loadUsers() {
+    const users = await api("/api/admin/users");
+    const tbody = document.getElementById("users-table");
+    if (!Array.isArray(users)) { showAlert("Invalid admin key", "error"); return; }
+    tbody.innerHTML = users.sort((a,b) => new Date(b.lastSeen) - new Date(a.lastSeen)).map(u => `
+        <tr>
+            <td><strong>${u.username}</strong></td>
+            <td><code style="font-size:11px">${u.discordId}</code></td>
+            <td><span class="role-badge role-${u.role}">${u.role}</span></td>
+            <td>${(u.dp || 0).toLocaleString()} DP</td>
+            <td>${u.version || "?"}</td>
+            <td>${new Date(u.joinedAt).toLocaleDateString()}</td>
+            <td>${new Date(u.lastSeen).toLocaleString()}</td>
+            <td>
+                <button class="btn-danger" style="padding:4px 10px;font-size:11px" onclick="quickBan('${u.discordId}')">Ban</button>
+            </td>
+        </tr>
+    `).join("");
+}
+
+async function setRole() {
+    const discordId = document.getElementById("role-userid").value;
+    const role = document.getElementById("role-select").value;
+    if (!discordId) return showAlert("Enter a Discord ID", "error");
+    const res = await api("/api/admin/role", "POST", { discordId, role });
+    if (res.success) { showAlert(`Role set to ${role} for ${discordId}`); loadUsers(); }
+    else showAlert(res.error || "Failed", "error");
+}
+
+async function banUser() {
+    const discordId = document.getElementById("ban-userid").value;
+    const reason = document.getElementById("ban-reason").value;
+    if (!discordId) return showAlert("Enter a Discord ID", "error");
+    const res = await api("/api/admin/ban", "POST", { discordId, reason });
+    if (res.success) { showAlert(`${discordId} has been banned`); loadUsers(); }
+    else showAlert(res.error || "Failed", "error");
+}
+
+async function unbanUser() {
+    const discordId = document.getElementById("ban-userid").value;
+    if (!discordId) return showAlert("Enter a Discord ID", "error");
+    const res = await api("/api/admin/unban", "POST", { discordId });
+    if (res.success) showAlert(`${discordId} has been unbanned`);
+    else showAlert(res.error || "Failed", "error");
+}
+
+async function quickBan(discordId) {
+    const reason = prompt(`Ban reason for ${discordId}:`, "Violation of DemCord Terms of Service");
+    if (!reason) return;
+    const res = await api("/api/admin/ban", "POST", { discordId, reason });
+    if (res.success) { showAlert(`${discordId} banned`); loadUsers(); }
+}
+
+async function adjustDP() {
+    const discordId = document.getElementById("dp-userid").value;
+    const amount = parseInt(document.getElementById("dp-amount").value);
+    if (!discordId || isNaN(amount)) return showAlert("Enter valid ID and amount", "error");
+    const res = await api("/api/admin/dp", "POST", { discordId, amount });
+    if (res.success) showAlert(`DP adjusted. New balance: ${res.newBalance}`);
+    else showAlert(res.error || "Failed", "error");
+}
+
+// WebSocket for live updates
+const proto = location.protocol === "https:" ? "wss:" : "ws:";
+const ws = new WebSocket(`${proto}//${location.host}`);
+ws.onmessage = (e) => {
+    const msg = JSON.parse(e.data);
+    if (msg.type === "count" || msg.type === "connected") {
+        document.getElementById("active-count").textContent = msg.count || msg.activeUsers || 0;
+        document.getElementById("stat-active").textContent = msg.count || msg.activeUsers || 0;
+    }
+};
+
+loadStats();
+setInterval(loadStats, 30000);
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 300px; background: #0D0010; color: #E9D5FF; font-family: sans-serif; }
+    .header { background: linear-gradient(135deg, #4B1080, #7B2FBE); padding: 16px; text-align: center; }
+    .header h1 { font-size: 20px; font-weight: 700; }
+    .header p { font-size: 11px; color: #C084FC; margin-top: 2px; }
+    .content { padding: 16px; }
+    .status { background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; font-size: 12px; }
+    .status span { color: #A855F7; font-weight: 600; }
+    button { width: 100%; padding: 10px; background: linear-gradient(135deg, #7B2FBE, #A855F7); border: none; border-radius: 8px; color: white; font-size: 13px; font-weight: 600; cursor: pointer; margin-bottom: 8px; }
+    button:hover { opacity: 0.9; }
+    button.secondary { background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); }
+    .footer { padding: 10px 16px; font-size: 10px; color: #4B1080; text-align: center; border-top: 1px solid rgba(168,85,247,0.1); }
+</style>
+</head>
+<body>
+<div class="header">
+    <h1>DemCord</h1>
+    <p>The Demon-Powered Discord Client</p>
+</div>
+<div class="content">
+    <div class="status" id="status">Checking status...</div>
+    <button onclick="update()">Update DemCord</button>
+    <button class="secondary" onclick="openDiscord()">Open Discord</button>
+    <button class="secondary" onclick="openGitHub()">GitHub</button>
+</div>
+<div class="footer">DemCord v2.5.0</div>
+<script>
+chrome.storage.local.get(["lastUpdate","renderer.js"], data => {
+    const el = document.getElementById("status");
+    if (data["renderer.js"]) {
+        const last = data.lastUpdate ? new Date(data.lastUpdate).toLocaleDateString() : "Unknown";
+        el.innerHTML = "Status: <span>Active</span><br>Last update: " + last;
+    } else {
+        el.innerHTML = "Status: <span style='color:#f38ba8'>Downloading...</span>";
+    }
+});
+function update() {
+    chrome.runtime.sendMessage({ type: "UPDATE" }, () => {
+        document.getElementById("status").innerHTML = "Status: <span>Updated!</span>";
+    });
+}
+function openDiscord() { chrome.tabs.create({ url: "https://discord.com/app" }); }
+function openGitHub() { chrome.tabs.create({ url: "https://github.com/semmenade/DemCord" }); }
+</script>
+</body>
+</html>
