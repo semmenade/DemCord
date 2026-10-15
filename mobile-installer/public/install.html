@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>DemCord Installer</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0d0010; color: #e9d5ff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow-x: hidden; }
+.bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+.particle { position: absolute; border-radius: 50%; background: rgba(168,85,247,0.3); animation: float linear infinite; }
+@keyframes float { 0%{transform:translateY(100vh);opacity:0} 10%{opacity:1} 90%{opacity:0.3} 100%{transform:translateY(-10px);opacity:0} }
+.container { position: relative; z-index: 10; width: 90%; max-width: 420px; text-align: center; padding: 20px 0; }
+.logo { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #c084fc, #e9d5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 4px; }
+.tagline { font-size: 13px; color: #9b72cf; margin-bottom: 32px; }
+.card { background: rgba(26,0,51,0.85); border: 1px solid rgba(168,85,247,0.25); border-radius: 20px; padding: 28px 24px; backdrop-filter: blur(20px); margin-bottom: 16px; }
+.step-header { font-size: 18px; font-weight: 700; color: #c084fc; margin-bottom: 8px; }
+.step-desc { font-size: 14px; color: #9b72cf; line-height: 1.6; margin-bottom: 24px; }
+.progress { display: flex; gap: 8px; justify-content: center; margin-bottom: 24px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(168,85,247,0.3); transition: all 0.3s; }
+.dot.active { background: #a855f7; width: 24px; border-radius: 4px; }
+.dot.done { background: #22c55e; }
+.btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #7b2fbe, #a855f7); border: none; border-radius: 12px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; position: relative; overflow: hidden; transition: opacity 0.2s; }
+.btn:active { opacity: 0.8; }
+.btn::after { content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); animation: shine 2s ease-in-out infinite; }
+@keyframes shine { 100% { left: 100%; } }
+.btn-secondary { background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.3); margin-top: 8px; }
+.status { font-size: 12px; color: #4b1080; margin-top: 16px; min-height: 18px; }
+.platform-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.platform-btn { padding: 16px; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.25); border-radius: 12px; color: #e9d5ff; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.platform-btn:active { background: rgba(168,85,247,0.3); }
+.permission-box { background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2); border-radius: 12px; padding: 16px; margin-bottom: 20px; text-align: left; }
+.permission-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; color: #9b72cf; }
+.permission-item:last-child { margin-bottom: 0; }
+.permission-icon { width: 24px; height: 24px; background: rgba(168,85,247,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+.success { color: #22c55e; font-size: 48px; margin-bottom: 16px; }
+.loader { width: 40px; height: 40px; border: 3px solid rgba(168,85,247,0.2); border-top-color: #a855f7; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="bg" id="bg"></div>
+<div class="container">
+    <div class="logo">DemCord</div>
+    <div class="tagline">The Demon-Powered Discord Client</div>
+
+    <!-- Step 0: Permission -->
+    <div class="card" id="step-0">
+        <div class="step-header">Install DemCord</div>
+        <div class="step-desc">DemCord will modify your Discord app to add 200+ plugins, custom themes, and performance improvements.</div>
+        <div class="permission-box">
+            <div class="permission-item"><div class="permission-icon">S</div>Read and modify Discord app files</div>
+            <div class="permission-item"><div class="permission-icon">N</div>Send install notifications</div>
+            <div class="permission-item"><div class="permission-icon">U</div>Auto-update from GitHub</div>
+        </div>
+        <div class="step-desc">Select your platform:</div>
+        <div class="platform-btns">
+            <button class="platform-btn" onclick="selectPlatform('android')">Android</button>
+            <button class="platform-btn" onclick="selectPlatform('ios')">iPhone / iPad</button>
+        </div>
+        <div class="status" id="status-0">Choose your platform to continue</div>
+    </div>
+
+    <!-- Step 1: Download -->
+    <div class="card hidden" id="step-1">
+        <div class="progress" id="progress"></div>
+        <div class="loader"></div>
+        <div class="step-header" id="step-1-title">Downloading DemCord...</div>
+        <div class="step-desc" id="step-1-desc">Please wait while we prepare your installation.</div>
+        <div class="status" id="status-1"></div>
+    </div>
+
+    <!-- Step 2: Install -->
+    <div class="card hidden" id="step-2">
+        <div class="progress" id="progress-2"></div>
+        <div class="step-header" id="step-2-title">Install DemCord</div>
+        <div class="step-desc" id="step-2-desc">Follow the instructions below.</div>
+        <button class="btn" id="step-2-btn" onclick="completeStep(2)">Continue</button>
+        <div class="status" id="status-2">Waiting for you to complete this step...</div>
+    </div>
+
+    <!-- Step 3: Finalize -->
+    <div class="card hidden" id="step-3">
+        <div class="progress" id="progress-3"></div>
+        <div class="step-header" id="step-3-title">Almost done!</div>
+        <div class="step-desc" id="step-3-desc">One last step.</div>
+        <button class="btn" id="step-3-btn" onclick="completeStep(3)">Continue</button>
+        <div class="status" id="status-3"></div>
+    </div>
+
+    <!-- Complete -->
+    <div class="card hidden" id="step-complete">
+        <div class="success">✓</div>
+        <div class="step-header">DemCord Installed!</div>
+        <div class="step-desc">Restart Discord to start using DemCord with all your plugins and themes.</div>
+        <button class="btn" onclick="openDiscord()">Open Discord</button>
+        <button class="btn btn-secondary" onclick="window.location.href='https://github.com/semmenade/DemCord'">View on GitHub</button>
+    </div>
+</div>
+
+<script>
+let ws, sessionId, platform, currentStep = 0;
+
+// Detect platform automatically
+const ua = navigator.userAgent;
+const isAndroid = /Android/i.test(ua);
+const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+if (isAndroid) document.querySelector('[onclick="selectPlatform(\'android\')"]').style.border = "2px solid #a855f7";
+if (isIOS) document.querySelector('[onclick="selectPlatform(\'ios\')"]').style.border = "2px solid #a855f7";
+
+function connect() {
+    const proto = location.protocol === "https:" ? "wss:" : "ws:";
+    ws = new WebSocket(`${proto}//${location.host}`);
+    ws.onmessage = (e) => handleMessage(JSON.parse(e.data));
+    ws.onerror = () => document.getElementById("status-0").textContent = "Connection error. Retrying...";
+}
+
+function handleMessage(msg) {
+    if (msg.type === "connected") { sessionId = msg.sessionId; return; }
+    if (msg.type === "step") {
+        currentStep = msg.step;
+        updateUI(msg);
+    }
+}
+
+function updateUI(msg) {
+    if (msg.action === "complete") { showComplete(); return; }
+
+    const stepEl = document.getElementById(`step-${msg.step}`);
+    if (!stepEl) return;
+
+    // Hide all steps
+    document.querySelectorAll("[id^='step-']").forEach(el => el.classList.add("hidden"));
+    stepEl.classList.remove("hidden");
+
+    // Update content
+    const title = document.getElementById(`step-${msg.step}-title`);
+    const desc = document.getElementById(`step-${msg.step}-desc`);
+    const status = document.getElementById(`status-${msg.step}`);
+    if (title) title.textContent = msg.message || title.textContent;
+
+    // Handle actions
+    if (msg.action === "download_apk" || msg.action === "download_ipa") {
+        setTimeout(() => { window.location.href = msg.url; setTimeout(() => completeStep(msg.step), 3000); }, 1000);
+    } else if (msg.action === "install_profile") {
+        window.location.href = msg.url;
+        if (status) status.textContent = "Profile download started. Install it in Settings.";
+    } else if (msg.action === "open_discord") {
+        setTimeout(() => { window.location.href = "discord://"; completeStep(msg.step); }, 1000);
+    }
+
+    updateProgress(msg.step);
+}
+
+function updateProgress(step) {
+    const progressEls = document.querySelectorAll("[id^='progress']");
+    progressEls.forEach(el => {
+        el.innerHTML = "";
+        const total = platform === "android" ? 3 : 4;
+        for (let i = 1; i <= total; i++) {
+            const dot = document.createElement("div");
+            dot.className = `dot${i === step ? " active" : i < step ? " done" : ""}`;
+            el.appendChild(dot);
+        }
+    });
+}
+
+function selectPlatform(p) {
+    platform = p;
+    document.getElementById("status-0").textContent = `${p === "android" ? "Android" : "iOS"} selected. Tap Allow to begin.`;
+    document.querySelector("#step-0 .btn")?.remove();
+    const btn = document.createElement("button");
+    btn.className = "btn";
+    btn.textContent = "Allow & Install";
+    btn.onclick = grantPermission;
+    document.getElementById("step-0").appendChild(btn);
+}
+
+function grantPermission() {
+    if (!ws || ws.readyState !== WebSocket.OPEN) { connect(); setTimeout(grantPermission, 1000); return; }
+    document.getElementById("step-0").classList.add("hidden");
+    document.getElementById("step-1").classList.remove("hidden");
+    ws.send(JSON.stringify({ type: "permission_granted", platform, sessionId }));
+    fetch("/api/stats", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ platform, step: 0 }) });
+}
+
+function completeStep(step) {
+    ws.send(JSON.stringify({ type: "step_complete", step, sessionId }));
+    fetch("/api/stats", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ platform, step }) });
+}
+
+function showComplete() {
+    document.querySelectorAll("[id^='step-']").forEach(el => el.classList.add("hidden"));
+    document.getElementById("step-complete").classList.remove("hidden");
+}
+
+function openDiscord() { window.location.href = "discord://"; }
+
+// Create particles
+const bg = document.getElementById("bg");
+for (let i = 0; i < 20; i++) {
+    const p = document.createElement("div");
+    p.className = "particle";
+    const size = Math.random() * 4 + 2;
+    p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;`;
+    bg.appendChild(p);
+}
+
+connect();
+</script>
+</body>
+</html>

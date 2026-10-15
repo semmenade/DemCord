@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Vencord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and Megumin
  *
@@ -17,8 +17,8 @@
 */
 
 import { definePluginSettings } from "@api/Settings";
-import { BackupRestoreIcon, CloudIcon, MainSettingsIcon, PaintbrushIcon, PatchHelperIcon, PlaceholderIcon, PluginsIcon, UpdaterIcon, VesktopSettingsIcon } from "@components/Icons";
-import { BackupAndRestoreTab, CloudTab, PatchHelperTab, PluginsTab, ThemesTab, UpdaterTab, VencordTab } from "@components/settings/tabs";
+import { BackupRestoreIcon, CloudIcon, MainSettingsIcon, PaintbrushIcon, PatchHelperIcon, PlaceholderIcon, PluginsIcon, ShieldIcon, UpdaterIcon, VesktopSettingsIcon } from "@components/Icons";
+import { BackupAndRestoreTab, CloudTab, PatchHelperTab, PluginsTab, SecurityTab, ThemesTab, UpdaterTab, VencordTab } from "@components/settings/tabs";
 import { Devs } from "@utils/constants";
 import { isTruthy } from "@utils/guards";
 import definePlugin, { IconProps, OptionType } from "@utils/types";
@@ -183,6 +183,13 @@ export default definePlugin({
                 Icon: PluginsIcon
             }),
             buildEntry({
+                key: "vencord_security",
+                title: "Security",
+                panelTitle: "DemCord Security",
+                Component: SecurityTab,
+                Icon: PluginsIcon
+            }),
+            buildEntry({
                 key: "vencord_themes",
                 title: "Themes",
                 Component: ThemesTab,
@@ -310,4 +317,6 @@ export default definePlugin({
         );
     }
 });
+
+
 
